@@ -1,11 +1,11 @@
-### Character Controller or rigidbody
+## Character Controller or rigidbody
 控制器本身不会对力做出反应，也不会自动推开刚体，在OnControllerColliderHit()函数对与控制器碰撞的任何对象施加力
-##### skinwidth 设置约为10% 
+#### skinwidth 设置约为10% 
 作为未防止抖动，太大容易卡住
 ##### stepOffset 仅当角色比指示值更接近地面时，角色才会升高一个台阶
 
-#### Jonit
-##### character joint
+## Jonit
+### character joint
 - connectBody 关联对象
 - Anchor 关联对象局部空间旋转点
 - axis 旋转轴
@@ -15,7 +15,7 @@
 -  break force 破坏力 （位移）
 -  break torque 破坏扭矩 （旋转）
 -  enable collision 允许关节间碰撞
-##### extension
+### extension
 - bounciness 关节反弹力
 - spring 关节关联物体的弹力
 - damper 阻尼力
