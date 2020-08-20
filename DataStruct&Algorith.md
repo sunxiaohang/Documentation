@@ -6,7 +6,7 @@
 - 最好结果：1
 - 最坏结果：LOG(N)
 
-```
+```C
 /*静态查找（字典）
  * 动态查找（文件结构）
  * */
@@ -26,7 +26,7 @@ int binary_search(int arrays[],int result,int length){
 ##### 最大子序列和（maxSubSeqSum）
 - 时间复杂度:T(N)=O(N3)
 
-```
+```C
 int MaxSubSeqSum(int arrays[],int length){
     int i,j,k,thisSum=0,maxSum=0;
     for(i=0;i<length;i++){
@@ -45,7 +45,7 @@ int MaxSubSeqSum(int arrays[],int length){
 ##### 最大子序列和改进1（maxSubSeqSum）
 - 时间复杂度:T(N)=O(N2)
 
-```
+```C
 int MaxSubSeqSum(int arrays[],int length){
     int i,j,thisSum=0,maxSum=0;
     for(i=0;i<length;i++){//i是子列左端
@@ -62,7 +62,7 @@ int MaxSubSeqSum(int arrays[],int length){
 ##### 最大子序列和（maxSubSeqSum）--分治法
 - 算法复杂度:T(N)=O(NlgN)
 
-```
+```C
 int MaxSubSeqSum(int arrays[], int left, int right) {
     int sum = 0;
     if (left == right) {
@@ -93,7 +93,7 @@ int MaxSubSeqSum(int arrays[], int left, int right) {
 
 ##### 线性表的顺序存储
 
-```
+```C
 typedef struct LinkedList{
     int data[MAXSIZE];//存储数组
     int Last;//游标指针
@@ -144,7 +144,7 @@ void DeleteElement(int i,List* Ptrl){
 
 ##### 线性表的链式存储
 
-```
+```C
 typedef struct LinkedList {
     int data;
     struct LinkedList *next;
@@ -234,7 +234,7 @@ List *Delete(int i, List *Ptrl) {
  - 对于线性表而言，n的元素都是基本单元素
  - 广义表中，这些元素不仅可以是单元素也可以是另一个广义表
 
-```
+```C
 typedef struct GNode{
     int Tag;//标识域：0表示结点是单元素，1表示结点是广义表
     union {//子表指针域Sublist与单元素数据域Data复用，即共用存储空间
@@ -260,7 +260,7 @@ typedef struct GNode{
  
 ##### 堆栈（顺序存储）数组方式
 
-```
+```C
 typedef struct{
     int Data[MAXSIZE];
     int Top;
@@ -285,7 +285,7 @@ int Pop(Stack *stack){
 #####  一个有界数组存储两个堆栈
 `tip`:一个有界数组存储两个堆栈，如果数组有空间则执行入栈操作，（一个向右增长，一个向左增长）
 
-```
+```C
 #define MAXSIZE 50
    typedef struct DStack{
        int data[MAXSIZE];
@@ -328,7 +328,7 @@ int Pop(Stack *stack){
 
 ##### 堆栈（链式存储）
 
-```
+```C
 /*用单向链表表示栈时候，栈Top结点一定是链头结点
  * */
 typedef struct Node{
@@ -371,7 +371,7 @@ int Pop(LinkedStack *stack){
 
 ##### 队列（顺序存储）
 
-```
+```C
 #define MAXSIZE 50
 typedef struct {
     int value[MAXSIZE];
@@ -409,7 +409,7 @@ void OutQueue(Queue* queue,int *value){
 }
 ```
 ##### 队列（链式存储）注意
-```
+```C
 typedef struct Node {
     int value;
     struct Node *next;
@@ -468,7 +468,7 @@ void OutQueue(Queue *queue, int *value) {
 
 在二叉树中，我们知道叶结点总数n0与有两个儿子的结点总数n2之间的关系是：n0=n2+1. 那么类似关系是否可以推广到m叉树中？也就是，如果在m叉树中，叶结点总数是n0， 有一个儿子的结点总数是n1，有2个儿子的结点总数是n2，有3个儿子的结点总数是n3， ...。那么，ni之间存在什么关系？ 完全二叉树，非根节点的父节点序号是[i/2] 结点的左孩子结点序号是2i，若2i<=n，否则没有左孩子结点 结点的右孩子结点序号是2i+1，（若2i+1<=n,否则没有右孩子）
 
-```
+```C
  typedef struct BT{
      int value;
      struct BT *leftchild;
@@ -638,7 +638,7 @@ BinTree *Delete(BinTree *binTree,int value){
 - Nh是高度为h的平衡二叉树的最小结点树
  Nh=F(h+2)-1
 
-```
+```C
  #define MaxData 10000
  typedef struct HeapStruct{
      int *value;//存储对元素的数组
@@ -655,7 +655,7 @@ BinTree *Delete(BinTree *binTree,int value){
 
 对由同样n个整数构成的二叉搜索树（查找树）和最小堆：有以下结论 二叉搜索树高度大于等于最小堆高度 对该二叉搜索树进行中序遍历可得到从小到大的序列 从最小堆根节点到起任何叶结点的路径上的结点值构成从小到大的序列
 
-```
+```C
 Heap * Create(int MaxSize){
    Heap *heap=malloc(sizeof(Heap));
    heap->value=malloc((MaxSize+1)*sizeof(int));
@@ -712,7 +712,7 @@ typedef struct TreeNode{
 ##### 哈夫曼树（HuffmanTree）
 `tip`:查找效率，查找次数乘查找概率 带权路径长度（WPL）：设二叉树有n个叶子结点，每隔叶子结点带有权值Wk，从根节点到每隔叶子结点的长度是Lk，则每隔叶子结点的带全路径长度之和WPL=（nEk=1）WkLk 最优二叉树或哈夫曼树：WPL最小的二叉树 哈夫曼树的特点 没有度为1的结点 n个叶子结点的HuffmanTree有2n-1个结点 HuffmanTree的任意非叶结点的左右子树交换后仍是HuffmanTree 对于一组权值，可能有不同构的两棵HuffmanTree
 
-```
+```C
 HuffmanTree *Huffman(Heap *heap){
     //假设heap->length权值已经存在heap->value[]->weight里面
     int i;HuffmanTree *huffmanTree;

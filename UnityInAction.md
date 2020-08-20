@@ -290,7 +290,36 @@ static public class Messenger<T, U, V> {
     }
 }
 ```
-
+#### Messenger 精简版
+```C#
+static internal class MessageQueueInternal {
+    private static Dictionary<string, Delegate> m_Subscriber = new Dictionary<string, Delegate>();
+    public static void AddListener(string eventType, Delegate handler) {
+        if (!m_Subscriber.ContainsKey(eventType)) {
+            m_Subscriber.Add(eventType, null);
+        }
+        m_Subscriber[eventType] = Delegate.Combine(m_Subscriber[eventType],handler);
+    }
+    public static Delegate[] GetInvokeList(string eventType){
+        Delegate delegateList;
+        if (m_Subscriber.TryGetValue(eventType,out delegateList)) {
+            return delegateList.GetInvocationList();
+        }
+        return new Delegate[0];
+    }
+}
+static public class MessageQueue<T>{
+    public static void AddListener(string eventType,Action<T> handler) {
+        MessageQueueInternal.AddListener(eventType,handler);
+    }
+    public static void Broadcast(string eventType, T arg) {
+        var invokeList = MessageQueueInternal.GetInvokeList(eventType);
+        foreach (var call in invokeList) {
+            call.DynamicInvoke(arg);
+        }
+    }
+}
+```
 ### Custom Playable graph
 ##### Custom track
 ```C#
