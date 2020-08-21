@@ -33,6 +33,7 @@
 逐片元操作(Per-Fragment Operations):负责很多重要操作，例如修改颜色，深度缓冲，混合等（逐片元合并）
 - 决定每个片元的可见性，涉及很多测试工作，如深度测试，模板测试等
 - 如果一个片元通过了所有测试，仅需要把这个片元的颜色值和已经存储的颜色缓冲区中的颜色进行合并（混色）
+  ![20200821195817](https://raw.githubusercontent.com/sunxiaohang/ImgResources/master/imgs/20200821195817.png)
 #### Q&A
 问题1:CPU和GPU是怎样实现并行工作的
 --命令缓冲区(Command Buffer)--：包含一个命令队列，CPU添加命令，GPU读取命令
