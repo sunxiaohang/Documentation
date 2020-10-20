@@ -407,3 +407,117 @@ public class AudioMixer : MonoBehaviour
     }
 }
 ```
+### unity UI Dispatcher
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class UIEventDispacher : EventTrigger 
+{
+    public delegate void UIEventDelegate(GameObject obj,BaseEventData data);
+    private UIEventDelegate m_OnPointerUp;
+    private UIEventDelegate m_OnPointerDown;
+    private UIEventDelegate m_OnPointerDrag;
+    private UIEventDelegate m_OnPointerDragBegin;
+    private UIEventDelegate m_OnPointerDragEnd;
+    private UIEventDelegate m_OnPointerClick;
+    private UIEventDelegate m_OnPointerEnter;
+    private UIEventDelegate m_OnPointerExit;
+    private UIEventDelegate m_OnSelected;
+    private UIEventDelegate m_OnUpdateSelect;
+
+    public void SetOnClick(UIEventDelegate action) {
+        m_OnPointerClick = action;
+    }
+    public void SetOnDragBegin(UIEventDelegate action)
+    {
+        m_OnPointerDragBegin = action;
+    }
+    public void SetOnDrag(UIEventDelegate action)
+    {
+        m_OnPointerDrag = action;
+    }
+    public void SetOnDragEnd(UIEventDelegate action)
+    {
+        m_OnPointerDragEnd = action;
+    }
+    public void SetOnClickUp(UIEventDelegate action) {
+        m_OnPointerUp = action;
+    }
+    public void SetOnClickDown(UIEventDelegate action) {
+        m_OnPointerDown = action;
+    }
+    public void SetOnPointerOver(UIEventDelegate action) {
+        m_OnPointerEnter = action;
+    }
+    public void SetOnPointerExit(UIEventDelegate action) {
+        m_OnPointerExit = action;
+    }
+    public void SetOnSelected(UIEventDelegate action) {
+        m_OnSelected = action;
+    }
+    public void SetOnUpdateSelected(UIEventDelegate action)
+    {
+        m_OnUpdateSelect = action;
+    }
+
+    public static UIEventDispacher Instance(GameObject gameObject) {
+        UIEventDispacher dispacher = gameObject.GetComponent<UIEventDispacher>();
+        if (dispacher == null) dispacher = gameObject.AddComponent<UIEventDispacher>();
+        return dispacher;
+    }
+    public override void OnPointerUp(PointerEventData eventData)
+    {
+        base.OnPointerUp(eventData);
+        m_OnPointerUp?.Invoke(gameObject, eventData);
+    }
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        base.OnPointerDown(eventData);
+        m_OnPointerDown?.Invoke(gameObject, eventData);
+    }
+    public override void OnDrag(PointerEventData eventData)
+    {
+        base.OnDrag(eventData);
+        m_OnPointerDrag?.Invoke(gameObject, eventData);
+    }
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        base.OnBeginDrag(eventData);
+        m_OnPointerDragBegin?.Invoke(gameObject, eventData);
+    }
+    public override void OnEndDrag(PointerEventData eventData)
+    {
+        base.OnEndDrag(eventData);
+        m_OnPointerDragEnd?.Invoke(gameObject, eventData);
+    }
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        m_OnPointerEnter?.Invoke(gameObject, eventData);
+    }
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        m_OnPointerExit?.Invoke(gameObject, eventData);
+    }
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        base.OnPointerClick(eventData);
+        m_OnPointerClick?.Invoke(gameObject, eventData);
+    }
+    public override void OnSelect(BaseEventData eventData)
+    {
+        base.OnSelect(eventData);
+        m_OnSelected?.Invoke(gameObject, eventData);
+    }
+    public override void OnUpdateSelected(BaseEventData eventData)
+    {
+        base.OnUpdateSelected(eventData);
+        m_OnUpdateSelect?.Invoke(gameObject, eventData);
+    }
+}
+
+```
