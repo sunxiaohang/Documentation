@@ -9,10 +9,9 @@
 
 **Topic**
 - C/C#
-- JAVA
-- Android
+- JAVA/Android
 - Unity3D
 - Data struct & Algorithm
-- DesignPatterns
-
-
+- Design Patterns
+- Computer Graphics
+- Shader
