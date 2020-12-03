@@ -1,7 +1,17 @@
+### GLSL关键定义
 EBO(Element Buffer Object)索引缓冲对象：存储顶点的索引信息
 VBO(Vertex Buffer Object)顶点缓冲对象：存储顶点的信息CPU(copy到)=>GPU
 VAO(Vertex Array Object)顶点数组对象:存储了所有顶点数据属性的状态组合(顶点数据格式以及顶点数据所需的VBO对象引用)，相当于对多个VBO的引用
-
+### GLSL一般流程
+- init GLSL
+- VertexShader
+- FragmentShader
+- LinkShader
+- InitShapeData
+- VBO VAO EBO
+- Every frame update
+- Clear data and storage usage
+- Terminal
 ### OPENGL常用函数汇总
 - void glfwInit() 初始化
 - void glfwWindowHint(hint,value) 设置相关参数为期望值
